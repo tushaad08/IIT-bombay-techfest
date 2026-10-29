@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07080c">
+<title>TECHFEST — Make Tomorrow Move</title>
+<meta name="description" content="An unofficial creative landing page concept for Techfest, IIT Bombay.">
+<style>
+:root{--bg:#07080c;--panel:#11131b;--text:#f6f7fb;--muted:#a7adbb;--lime:#d8ff3e;--cyan:#60f2e3;--line:#ffffff1b;--pink:#ff5f91}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}button{font:inherit}
+.cursor-glow{position:fixed;z-index:0;pointer-events:none;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,#d8ff3e0c,transparent 68%);transform:translate(-50%,-50%)}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E")}
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--lime);z-index:40;box-shadow:0 0 18px #d8ff3e88}
+.nav{height:82px;position:fixed;z-index:30;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,5vw,76px);border-bottom:1px solid transparent;transition:background .25s,border-color .25s}
+.nav.scrolled{background:#07080ce8;backdrop-filter:blur(18px);border-color:var(--line)}
+.logo{display:flex;align-items:center;gap:11px;font-size:.83rem;font-weight:900;letter-spacing:.15em}.logo-mark{width:27px;height:27px;display:grid;place-items:center;background:var(--lime);color:#07080c;font-weight:1000;clip-path:polygon(0 0,100% 0,100% 70%,70% 100%,0 100%);font-size:.9rem}
+.links{display:flex;align-items:center;gap:clamp(16px,2.5vw,34px);font-size:.78rem;color:#d0d3dc}.links a{transition:color .2s}.links a:hover{color:var(--lime)}
+.nav-cta{padding:11px 16px;border:1px solid #d8ff3e88;border-radius:3px;color:var(--lime);font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}.nav-cta:hover{background:var(--lime);color:#07080c}
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:130px clamp(20px,8vw,125px) 80px;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 80% 35%,#263026 0%,transparent 35%),radial-gradient(ellipse at 10% 90%,#102c32 0%,transparent 30%),#07080c}
+.hero-grid{position:absolute;inset:0;z-index:-2;opacity:.19;background-image:linear-gradient(#a8ffef1b 1px,transparent 1px),linear-gradient(90deg,#a8ffef1b 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(90deg,transparent,#000 40%,#000)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#07080c 0%,#07080ce8 40%,transparent 100%)}
+.hero-copy{max-width:850px;position:relative;z-index:3}
+.kicker{display:flex;align-items:center;gap:12px;color:var(--lime);font-size:.7rem;letter-spacing:.22em;font-weight:900;text-transform:uppercase}.kicker:before{content:"";width:28px;height:1px;background:var(--lime)}
+.hero h1{font-size:clamp(4.3rem,12vw,11rem);line-height:.78;letter-spacing:-.095em;margin:32px 0 28px;font-weight:950;text-transform:uppercase}
+.hero h1 .outline{color:transparent;-webkit-text-stroke:1px #f6f7fb;display:block}.hero h1 .accent{color:var(--lime);display:block}
+.hero-desc{max-width:475px;font-size:clamp(1rem,1.5vw,1.15rem);line-height:1.75;color:#b9becb}
+.hero-actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:32px}.button{display:inline-flex;align-items:center;gap:18px;padding:16px 20px;font-size:.78rem;font-weight:900;text-transform:uppercase;letter-spacing:.07em;transition:transform .2s,background .2s}.button:hover{transform:translateY(-3px)}.button.primary{background:var(--lime);color:#0a0b0e}.button.secondary{border:1px solid #ffffff40;color:#fff}
+.arrow{font-size:1.1rem}
+.hero-art{position:absolute;right:2vw;top:15%;width:min(53vw,760px);height:72%;z-index:1;pointer-events:none;transform:rotate(-8deg)}
+.ring{position:absolute;border:1px solid #d8ff3e45;border-radius:50%;width:75%;aspect-ratio:1;right:2%;top:4%;animation:spin 28s linear infinite}
+.ring.r2{width:58%;right:10%;top:12%;border-color:#60f2e34a;animation-duration:20s;animation-direction:reverse}
+.ring.r3{width:92%;right:-7%;top:-5%;border-style:dashed;border-color:#ffffff24;animation-duration:60s}
+.orb{position:absolute;width:43%;aspect-ratio:1;border-radius:50%;right:17%;top:21%;background:radial-gradient(circle at 30% 25%,#edffae 0%,#d8ff3e 15%,#8caa23 38%,#28371a 66%,#090b0b 80%);box-shadow:inset -30px -35px 60px #000b,0 0 90px #d8ff3e1a}
+.orb:after{content:"";position:absolute;left:-25%;top:40%;width:150%;height:22%;border:10px solid #d8ff3e;border-left-color:#60f2e3;border-right-color:#ff5f91;border-radius:50%;transform:rotate(-28deg);filter:drop-shadow(0 0 13px #d8ff3e66)}
+.orb:before{content:"";position:absolute;inset:13%;border:1px solid #ffffff2b;border-radius:50%}
+.cross{position:absolute;width:35px;height:35px;right:11%;top:12%;color:var(--cyan);font-size:2rem;font-weight:200}
+.orbit-label{position:absolute;right:1%;bottom:13%;font-size:.65rem;line-height:1.8;letter-spacing:.18em;text-transform:uppercase;color:#c6ced4;transform:rotate(8deg)}
+.orbit-label b{display:block;color:var(--lime);font-size:.85rem}
+.hero-index{position:absolute;right:clamp(20px,5vw,76px);bottom:42px;display:flex;align-items:center;gap:14px;color:#8f95a3;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase}.hero-index span{display:block;width:64px;height:1px;background:#5b626c}
+.side-note{position:absolute;left:25px;bottom:70px;writing-mode:vertical-rl;transform:rotate(180deg);font-size:.62rem;letter-spacing:.2em;color:#777e8a;text-transform:uppercase}
+.ticker{overflow:hidden;background:var(--lime);color:#090b0b;transform:rotate(-1.3deg) scale(1.02);padding:15px 0;position:relative;z-index:4}.ticker-track{display:flex;gap:28px;white-space:nowrap;width:max-content;animation:ticker 28s linear infinite;font-size:.78rem;font-weight:950;letter-spacing:.13em;text-transform:uppercase}.ticker .star{font-size:1.15rem}
+@keyframes ticker{to{transform:translateX(-50%)}}@keyframes spin{to{transform:rotate(360deg)}}
+section{position:relative;padding:clamp(85px,11vw,150px) clamp(20px,8vw,125px)}
+.section-top{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:55px}.section-tag{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--lime);font-weight:900}
+h2{font-size:clamp(2.8rem,7vw,7rem);line-height:.88;letter-spacing:-.08em;text-transform:uppercase;margin:18px 0 0;font-weight:950}h2 .thin{font-weight:350;color:#aeb4c0}
+.section-intro{max-width:330px;color:var(--muted);font-size:.96rem;line-height:1.8}
+.edition{background:#0b0d12;overflow:hidden}.edition::before{content:"TF";position:absolute;right:-.03em;top:.04em;font-size:clamp(20rem,48vw,58rem);font-weight:1000;letter-spacing:-.12em;line-height:1;color:#ffffff04;pointer-events:none}
+.edition-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:5vw;align-items:center;position:relative}
+.edition-visual{min-height:470px;position:relative;border:1px solid #ffffff18;background:linear-gradient(135deg,#18201d,#0a1116 65%);overflow:hidden;display:grid;place-items:center}
+.edition-visual:before{content:"";position:absolute;inset:0;background:linear-gradient(130deg,transparent 40%,#d8ff3e13 40.2%,transparent 40.7%),linear-gradient(40deg,transparent 60%,#60f2e312 60.2%,transparent 60.7%);background-size:100% 100%}
+.big-number{font-size:clamp(8rem,22vw,19rem);font-weight:1000;letter-spacing:-.12em;line-height:.8;color:var(--lime);text-shadow:12px 12px 0 #ffffff09;position:relative}
+.visual-stamp{position:absolute;top:25px;left:25px;font-size:.68rem;line-height:1.8;letter-spacing:.13em;color:#b7c2c0;text-transform:uppercase}.visual-stamp strong{display:block;color:var(--lime)}
+.visual-bottom{position:absolute;bottom:24px;right:25px;text-align:right;font-size:.65rem;letter-spacing:.15em;color:#abb6bd;line-height:1.8}
+.edition-copy p{color:var(--muted);line-height:1.85;max-width:500px}.facts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:35px}.fact{border-top:1px solid var(--line);padding-top:15px}.fact strong{display:block;font-size:1.25rem;color:var(--lime);letter-spacing:-.04em}.fact span{font-size:.72rem;color:#8f97a5}
+.experience{background:#e9ebdf;color:#11150f}.experience .section-tag{color:#3e6b27}.experience .section-intro{color:#50574d}.experience h2 .thin{color:#7a8076}
+.experience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.experience-card{min-height:340px;padding:25px;display:flex;flex-direction:column;justify-content:space-between;background:#dce0d0;position:relative;overflow:hidden;transition:transform .3s,background .3s}.experience-card:hover{transform:translateY(-8px);background:#d1d9c0}
+.experience-card:nth-child(2){background:#d4e4de}.experience-card:nth-child(3){background:#d9d5e7}
+.card-top{display:flex;justify-content:space-between;font-size:.7rem;font-weight:900;letter-spacing:.1em}.card-symbol{font-size:4.5rem;line-height:1;font-weight:200;opacity:.85}.experience-card h3{font-size:1.7rem;letter-spacing:-.06em;margin:0 0 9px;text-transform:uppercase}.experience-card p{font-size:.86rem;line-height:1.7;color:#4c544a;max-width:270px;margin:0}
+.experience-card .card-link{margin-top:24px;display:inline-flex;gap:15px;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;font-weight:950}
+.marquee-quote{background:#11131b;padding:clamp(80px,11vw,140px) 20px;text-align:center;overflow:hidden}.marquee-quote .quote-small{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);font-weight:900}.marquee-quote blockquote{font-size:clamp(2.5rem,7.5vw,8rem);font-weight:950;line-height:.9;letter-spacing:-.08em;text-transform:uppercase;margin:25px auto;max-width:1100px}.marquee-quote blockquote span{color:transparent;-webkit-text-stroke:1px #f6f7fb}
+.final{min-height:75vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:radial-gradient(ellipse at 50% 110%,#25453c 0%,transparent 55%),#07080c}.final::before{content:"";position:absolute;width:min(70vw,700px);aspect-ratio:1;border:1px solid #d8ff3e26;border-radius:50%;box-shadow:0 0 0 60px #d8ff3e05,0 0 0 120px #d8ff3e04,0 0 0 180px #d8ff3e03}
+.final-content{position:relative;z-index:2}.final h2{max-width:1000px;margin:20px auto 28px}.final p{color:var(--muted);max-width:500px;line-height:1.8;margin:0 auto}
+footer{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:24px clamp(20px,5vw,76px);border-top:1px solid var(--line);color:#828995;font-size:.7rem;letter-spacing:.04em}footer b{color:#f6f7fb}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.7,.2,1)}.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:800px){.nav{height:70px}.links a:not(.nav-cta){display:none}.hero{padding-top:140px;align-items:flex-start}.hero-art{width:85vw;right:-23vw;top:28%;opacity:.6}.hero::after{background:linear-gradient(90deg,#07080c 0%,#07080cdd 60%,#07080c66)}.hero h1{font-size:clamp(4.2rem,18vw,8rem)}.side-note{display:none}.section-top{display:block}.section-intro{margin-top:25px}.edition-grid{grid-template-columns:1fr}.edition-visual{min-height:350px;order:2}.experience-grid{grid-template-columns:1fr}.experience-card{min-height:280px}.experience-card .card-symbol{font-size:3.5rem}footer{align-items:flex-start;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div><div class="cursor-glow" id="glow"></div><div class="noise"></div>
+<nav class="nav" id="nav">
+  <a href="#top" class="logo"><span class="logo-mark">T</span> TECHFEST <span style="color:var(--lime)">/</span> IIT BOMBAY</a>
+  <div class="links"><a href="#about">The scale</a><a href="#experiences">Explore</a><a href="#vision">The future</a><a class="nav-cta" href="https://techfest.org/" target="_blank" rel="noreferrer">Official website ↗</a></div>
+</nav>
+<header class="hero" id="top">
+  <div class="hero-grid"></div>
+  <div class="hero-art" aria-hidden="true"><div class="ring r3"></div><div class="ring"></div><div class="ring r2"></div><div class="orb"></div><div class="cross">✳</div><div class="orbit-label"><b>Ideas in orbit</b> Innovation / Imagination / Impact</div></div>
+  <div class="side-note">Asia's largest science & technology festival · Mumbai, India</div>
+  <div class="hero-copy">
+    <div class="kicker">IIT Bombay presents · A world of firsts</div>
+    <h1><span class="outline">Think</span><span class="accent">Beyond.</span><span>Build Next.</span></h1>
+    <p class="hero-desc">Where bold ideas meet real-world possibility. Step into a collision of technology, creativity, competition, and the people shaping what comes next.</p>
+    <div class="hero-actions"><a class="button primary" href="#experiences">Explore the universe <span class="arrow">↘</span></a><a class="button secondary" href="https://techfest.org/" target="_blank" rel="noreferrer">Visit techfest.org <span class="arrow">↗</span></a></div>
+  </div>
+  <div class="hero-index">01 <span></span> Scroll to ignite</div>
+</header>
+<div class="ticker"><div class="ticker-track"><span>BUILD THE IMPOSSIBLE</span><span class="star">✳</span><span>MAKE TOMORROW MOVE</span><span class="star">✳</span><span>IDEAS INTO IMPACT</span><span class="star">✳</span><span>BUILD THE IMPOSSIBLE</span><span class="star">✳</span><span>MAKE TOMORROW MOVE</span><span class="star">✳</span><span>IDEAS INTO IMPACT</span><span class="star">✳</span></div></div>
+<main>
+<section class="edition" id="about">
+  <div class="section-top reveal"><div><div class="section-tag">01 / The scale of possibility</div><h2>Not just a fest.<br><span class="thin">A launchpad.</span></h2></div><p class="section-intro">A meeting point for curious minds, fearless makers, and future-facing thinkers. Come for the spectacle. Leave with a bigger idea of what's possible.</p></div>
+  <div class="edition-grid">
+    <div class="edition-visual reveal"><div class="visual-stamp">A celebration of<br><strong>Science × Technology</strong></div><div class="big-number">TF</div><div class="visual-bottom">IIT BOMBAY<br>WHERE THE FUTURE GATHERS</div></div>
+    <div class="edition-copy reveal"><div class="section-tag">A platform for the next</div><h2 style="font-size:clamp(2.5rem,5vw,5rem)">Curiosity<br>with <span style="color:var(--lime)">voltage.</span></h2><p>From competitive arenas to hands-on discovery, Techfest brings people together around the questions that matter. This concept page celebrates that energy with a bold visual language inspired by circuits, orbital paths, and the spark of invention.</p><div class="facts"><div class="fact"><strong>IDEAS</strong><span>That refuse to sit still</span></div><div class="fact"><strong>PEOPLE</strong><span>Who make things happen</span></div><div class="fact"><strong>TECH</strong><span>From now to next</span></div><div class="fact"><strong>IMPACT</strong><span>Beyond the campus</span></div></div></div>
+  </div>
+</section>
+<section class="experience" id="experiences">
+  <div class="section-top reveal"><div><div class="section-tag">02 / Choose your adventure</div><h2>Enter the<br><span class="thin">playground.</span></h2></div><p class="section-intro">Three sides of the Techfest spirit. Pick a direction, follow your curiosity, and see where it takes you.</p></div>
+  <div class="experience-grid">
+    <article class="experience-card reveal"><div class="card-top"><span>01 / COMPETE</span><span>↗</span></div><div><div class="card-symbol">⌁</div><h3>Prove the possible.</h3><p>Challenge yourself, sharpen your skills, and turn preparation into performance.</p><a class="card-link" href="https://techfest.org/" target="_blank" rel="noreferrer">Discover events <span>↗</span></a></div></article>
+    <article class="experience-card reveal"><div class="card-top"><span>02 / DISCOVER</span><span>↗</span></div><div><div class="card-symbol">✳</div><h3>Get hands-on.</h3><p>Explore new ideas, learn from experts, and bring abstract concepts into focus.</p><a class="card-link" href="https://techfest.org/" target="_blank" rel="noreferrer">Explore learning <span>↗</span></a></div></article>
+    <article class="experience-card reveal"><div class="card-top"><span>03 / CONNECT</span><span>↗</span></div><div><div class="card-symbol">◎</div><h3>Find your people.</h3><p>Meet builders, thinkers, and creators who are just as excited about what's next.</p><a class="card-link" href="https://techfest.org/" target="_blank" rel="noreferrer">Join the movement <span>↗</span></a></div></article>
+  </div>
+</section>
+<section class="marquee-quote" id="vision"><div class="reveal"><div class="quote-small">03 / A future worth building</div><blockquote>Tomorrow isn't <span>waiting.</span><br>It's being <span>built.</span></blockquote><div class="quote-small">Bring the question. Bring the ambition. Bring the spark.</div></div></section>
+<section class="final"><div class="final-content reveal"><div class="kicker" style="justify-content:center">Your next idea starts here</div><h2>Make room for<br><span style="color:var(--lime)">the extraordinary.</span></h2><p>Ready to explore the official Techfest experience? Head to the main site for current events, registrations, and announcements.</p><div class="hero-actions" style="justify-content:center"><a class="button primary" href="https://techfest.org/" target="_blank" rel="noreferrer">Go to Techfest.org <span class="arrow">↗</span></a><a class="button secondary" href="#top">Back to top ↑</a></div></div></section>
+</main>
+<footer><span><b>TECHFEST × IIT BOMBAY</b> — Unofficial landing page concept</span><span>Design study · No 3D assets · Built with HTML, CSS & JS</span></footer>
+<script>
+(()=>{const progress=document.getElementById('progress'),nav=document.getElementById('nav'),glow=document.getElementById('glow');let raf=false;
+function update(){const y=window.scrollY||0,max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max>0?y/max*100:0)+'%';nav.classList.toggle('scrolled',y>30);raf=false}
+window.addEventListener('scroll',()=>{if(!raf){requestAnimationFrame(update);raf=true}},{passive:true});window.addEventListener('resize',update);update();
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.13});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+if(matchMedia('(pointer:fine)').matches&&!matchMedia('(prefers-reduced-motion: reduce)').matches){window.addEventListener('pointermove',e=>{glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'},{passive:true})}
+})();
+</script>
+</body></html>
